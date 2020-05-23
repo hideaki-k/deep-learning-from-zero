@@ -1,3 +1,4 @@
+t_rc = 0.02
 tc_m = 1 % –Œ’è” (s);
 R = 1 %–Œ’ïR;
 vthr = -50 % è‡’l“dˆÊ (mV);
@@ -9,6 +10,6 @@ I_min = -600 ;
 I = I_min:0.01:I_max;
 %rate = 1 / (tref + tc_m*log(1 + ((vthr - vrest)/(ganma*log(1 + ((I*R - vthr + vrest)/ganma)))))) + I;
 %rate = (tref + tc_m*log(1 + ((vthr - vrest)/(ganma*log(1 + exp((I*R - vthr + vrest)/ganma))))))
-rate = 1 / (tref + tc_m*log(1 + (vthr - vrest) / ganma*log(1 + exp((I*R - vthr + vrest)/ganma))))
+rate = 1 / (tref + t_rc*log(1 + ((vthr-vrest) / (ganma*log(1 + (exp((I*R - vthr + vrest)/ganma)))))))
 %rate = sin(I)
 plot(I,rate)

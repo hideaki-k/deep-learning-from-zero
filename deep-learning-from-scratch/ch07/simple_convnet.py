@@ -6,8 +6,7 @@ import numpy as np
 from collections import OrderedDict
 from common.layers import *
 from common.gradient import numerical_gradient
-
-
+print(os.pardir)
 class SimpleConvNet:
     """単純なConvNet
 
@@ -60,8 +59,9 @@ class SimpleConvNet:
 
     def predict(self, x):
         for layer in self.layers.values():
+            print(layers)
             x = layer.forward(x)
-
+            print(x)
         return x
 
     def loss(self, x, t):

@@ -22,8 +22,8 @@ R = 0.04 #膜抵抗
 vthr = -55 # 閾値電位 (mV)
 vrest = -65 # リセット電圧(mV)
 ganma = 0.02 # スムージング係数
-tref = 2e-3 # 不応期 (s)
-I_max = 600 # 最大電流(nA)
+tref = 1e-3 # 不応期 (s)
+I_max = 600 # 最大電流(pA)
 I_min = -600
 
 noise = np.random.normal(0, 1.5, (120, ))

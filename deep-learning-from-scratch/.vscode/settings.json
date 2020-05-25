@@ -1,0 +1,15 @@
+{
+    "json.schemas": [
+
+    
+    ],
+    "python.envFile": "C:\\Users\\hp731\\Documents\\GitHub\\deep-learning-from-zero\\deep-learning-from-scratch\\.env",
+    "python.autoComplete.extraPaths": [
+
+        "C:/Users/hp731/Documents/GitHub/deep-learning-from-zero/deep-learning-from-scratch/common/layers",
+        "C:/Users/hp731/Documents/GitHub/deep-learning-from-zero/deep-learning-from-scratch/common",
+        
+
+    ],
+    "python.pythonPath": "C:\\Users\\hp731\\Anaconda3\\envs\\tensorflow\\python.exe",
+}

@@ -1,0 +1,12 @@
+{
+    "json.schemas": [
+    
+    ],
+    "python.autoComplete.extraPaths": [
+
+        "C:/Users/hp731/Documents/GitHub/deep-learning-from-zero/deep-learning-from-scratch/common/layers",
+        "C:/Users/hp731/Documents/GitHub/deep-learning-from-zero/deep-learning-from-scratch/common",
+        
+
+    ],
+}

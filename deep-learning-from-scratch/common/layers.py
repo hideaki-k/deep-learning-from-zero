@@ -12,7 +12,8 @@ class Relu:
         self.mask = (x <= 0)
         out = x.copy()
         out[self.mask] = 0
-
+        print(out.shape)
+        #print(out)
         return out
 
     def backward(self, dout):
@@ -20,6 +21,28 @@ class Relu:
         dx = dout
 
         return dx
+
+class noisySoftplus:
+    def __init__(self):
+        self.mask = None
+
+    def forward(self, x):
+        a = 0.038
+        b =5.
+        sfactor = 1.
+        y = a * b * x * sfactor
+        y[x<10] = sfactor * a * np.log(1. + np.exp(x[x<10]*b))
+        print(y.shape)
+
+        return y
+
+    def backward(self, x):
+        a = 0.038
+        b = 5.
+        sfactor = 1.
+        y = 1./(1 + np.exp(-x/a)) * sfactor 
+
+        return y
 
 
 class Sigmoid:

@@ -49,19 +49,19 @@ class SimpleConvNet:
         self.layers = OrderedDict()
         self.layers['Conv1'] = Convolution(self.params['W1'], self.params['b1'],
                                            conv_param['stride'], conv_param['pad'])
-        self.layers['Relu1'] = Relu()
+        self.layers['Relu1'] = noisySoftplus()
         self.layers['Pool1'] = Pooling(pool_h=2, pool_w=2, stride=2)
         self.layers['Affine1'] = Affine(self.params['W2'], self.params['b2'])
-        self.layers['Relu2'] = Relu()
+        self.layers['Relu2'] = noisySoftplus()
         self.layers['Affine2'] = Affine(self.params['W3'], self.params['b3'])
 
         self.last_layer = SoftmaxWithLoss()
 
     def predict(self, x):
         for layer in self.layers.values():
-            print(layers)
+            #print(layers)
             x = layer.forward(x)
-            print(x)
+            #print(x)
         return x
 
     def loss(self, x, t):

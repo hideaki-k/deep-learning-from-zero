@@ -12,7 +12,7 @@ class Relu:
         self.mask = (x <= 0)
         out = x.copy()
         out[self.mask] = 0
-        print(out.shape)
+        #print(out.shape)
         #print(out)
         return out
 
@@ -27,17 +27,17 @@ class noisySoftplus:
         self.mask = None
 
     def forward(self, x):
-        a = 0.038
+        a = 0.3
         b =5.
         sfactor = 1.
         y = a * b * x * sfactor
-        y[x<10] = sfactor * a * np.log(1. + np.exp(x[x<10]*b))
-        print(y.shape)
+        y[x<10] = sfactor * a * np.log(1. + np.exp(x[x<10]/a))
+        #print(y)
 
         return y
 
     def backward(self, x):
-        a = 0.038
+        a = 0.3
         b = 5.
         sfactor = 1.
         y = 1./(1 + np.exp(-x/a)) * sfactor 
@@ -305,3 +305,5 @@ class Pooling:
         dx = col2im(dcol, self.x.shape, self.pool_h, self.pool_w, self.stride, self.pad)
         
         return dx
+
+print("hello")

@@ -48,12 +48,12 @@ class SimpleConvNet:
                             np.random.randn(hidden_size, output_size)
         self.params['b3'] = np.zeros(output_size)
 
-        print("W1",self.params['W1'])
-        print("b1",self.params['b1'])
-        print("W2",self.params['W2'])
-        print("b2",self.params['b2'])
-        print("W3",self.params['W3'])
-        print("b3",self.params['b3'])
+        print("W1",self.params['W1'].shape)
+        print("b1",self.params['b1'].shape)
+        print("W2",self.params['W2'].shape)
+        print("b2",self.params['b2'].shape)
+        print("W3",self.params['W3'].shape)
+        print("b3",self.params['b3'].shape)
 
         # レイヤの生成
         self.layers = OrderedDict()

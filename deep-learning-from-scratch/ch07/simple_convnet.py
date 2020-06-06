@@ -10,7 +10,7 @@ print(os.pardir)
 class SimpleConvNet:
     """単純なConvNet
 
-    conv - relu - pool - affine - relu - affine - softmax
+    conv - subsampling - conv -subsampling
     
     Parameters
     ----------

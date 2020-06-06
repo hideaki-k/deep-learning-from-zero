@@ -34,19 +34,25 @@ class SimpleConvNet:
         filter_stride = conv_param['stride']
         input_size = input_dim[1]
         conv_output_size = (input_size - filter_size + 2*filter_pad) / filter_stride + 1
+        #print("conv_output_size : ",conv_output_size)
+        #print("input_dim[0] : ",input_dim[0])
         pool_output_size = int(filter_num * (conv_output_size/2) * (conv_output_size/2))
-
+        #print("pool_output_size : ",pool_output_size)
         # 重みの初期化
         self.params = {}
         self.params['W1'] = weight_init_std * \
                             np.random.randn(filter_num, input_dim[0], filter_size, filter_size)
         self.params['b1'] = np.zeros(filter_num)
         self.params['W2'] = weight_init_std * \
-                            np.random.randn(pool_output_size, hidden_size)
-        self.params['b2'] = np.zeros(hidden_size)
-        self.params['W3'] = weight_init_std * \
-                            np.random.randn(hidden_size, output_size)
-        self.params['b3'] = np.zeros(output_size)
+                            np.random.randn(30, 30,5, 5)
+        self.params['b2'] = np.zeros(30)
+        print("W1",self.params['W1'].shape)
+        print("b1",self.params['b1'].shape)
+        print("W2",self.params['W2'].shape)
+        print("b2",self.params['b2'].shape)
+        #self.params['W3'] = weight_init_std * \
+         #                   np.random.randn(hidden_size, output_size)
+        #self.params['b3'] = np.zeros(output_size)
 
         # レイヤの生成
         self.layers = OrderedDict()
@@ -54,9 +60,11 @@ class SimpleConvNet:
                                            conv_param['stride'], conv_param['pad'])
         self.layers['Relu1'] = Relu()
         self.layers['Pool1'] = Pooling(pool_h=2, pool_w=2, stride=2)
-        self.layers['Affine1'] = Affine(self.params['W2'], self.params['b2'])
+        self.layers['Conv2'] = Convolution(self.params['W2'], self.params['b2'],
+                                            conv_param['stride'], conv_param['pad'])
         self.layers['Relu2'] = Relu()
-        self.layers['Affine2'] = Affine(self.params['W3'], self.params['b3'])
+        self.layers['Pool2'] = Pooling(pool_h=2, pool_w=2, stride=2)
+        #self.layers['Affine2'] = Affine(self.params['W3'], self.params['b3'])
 
         self.last_layer = SoftmaxWithLoss()
     """
@@ -97,9 +105,9 @@ class SimpleConvNet:
     """
     def predict(self, x):
         for layer in self.layers.values():
-            #print(layers)
+            print(layer)
             x = layer.forward(x)
-            #print(x)
+            print("x.shape:",x.shape)
         return x
 
     def loss(self, x, t):
@@ -175,8 +183,8 @@ class SimpleConvNet:
         # 設定
         grads = {}
         grads['W1'], grads['b1'] = self.layers['Conv1'].dW, self.layers['Conv1'].db
-        grads['W2'], grads['b2'] = self.layers['Affine1'].dW, self.layers['Affine1'].db
-        grads['W3'], grads['b3'] = self.layers['Affine2'].dW, self.layers['Affine2'].db
+        grads['W2'], grads['b2'] = self.layers['Conv2'].dW, self.layers['Conv2'].db
+        #grads['W3'], grads['b3'] = self.layers['Affine2'].dW, self.layers['Affine2'].db
 
         return grads
         
